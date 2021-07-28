@@ -25,6 +25,7 @@ public class UserService implements UserDao {
     @Override
     @Transactional
     public User searchUser(Long id) {
+        LOGGER.info("You got users from id: " + id);
         return userRepository.findById(id).get();
     }
 
@@ -54,13 +55,14 @@ public class UserService implements UserDao {
         user.setEmail(user.getEmail());
         LOGGER.info("You updated user");
 
+
         return user;
     }
 
     @Override
     @Transactional
     public void deleteUser(Long id) {
-        LOGGER.info("You deleted user");
+        LOGGER.info("You deleted user: " + id);
         userRepository.deleteById(id);
     }
 }

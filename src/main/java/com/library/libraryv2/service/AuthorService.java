@@ -27,18 +27,21 @@ public class AuthorService implements AuthorDao {
     @Override
     @Transactional
     public Author searchAuthor(Long id) {
+        LOGGER.info("You got author from id: " + id);
         return authorRepository.findById(id).get();
     }
 
     @Override
     @Transactional
     public List<Author> searchAuthors() {
+        LOGGER.info("You got authors");
         return authorRepository.findAll();
     }
 
     @Override
     @Transactional
     public Author createAuthor(Author author) {
+        LOGGER.info("You created author");
         return authorRepository.save(author);
     }
 
@@ -50,6 +53,7 @@ public class AuthorService implements AuthorDao {
 
         author.setFirstName(author.getFirstName());
         author.setLastName(author.getLastName());
+        LOGGER.info("You updated author");
 
         authorRepository.save(author);
         return author;
@@ -58,6 +62,7 @@ public class AuthorService implements AuthorDao {
     @Override
     @Transactional
     public void deleteAuthor(Long id) {
+        LOGGER.info("You deleted author: " + id);
 
         authorRepository.deleteById(id);
 

@@ -27,6 +27,16 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
+    public Book() {
+    }
+
+    public Book(Long id, String bookName, String year, String price, Author author) {
+        this.id = id;
+        this.bookName = bookName;
+        this.year = year;
+        this.price = price;
+        this.author = author;
+    }
 
     public Long getId() {
         return id;
