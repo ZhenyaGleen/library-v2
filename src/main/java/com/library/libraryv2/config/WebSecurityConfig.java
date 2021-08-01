@@ -26,10 +26,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/health").hasAnyRole(Role.ADMIN.name())
-                .antMatchers(HttpMethod.GET, "/api/users").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
-                .antMatchers(HttpMethod.POST, "/api/users/**").hasAnyRole(Role.ADMIN.name())
-                .antMatchers(HttpMethod.PUT, "/api/users/**").hasAnyRole(Role.ADMIN.name())
-                .antMatchers(HttpMethod.DELETE, "api//users/**").hasAnyRole(Role.ADMIN.name())
+
+                .antMatchers(HttpMethod.GET, "/api/users","/api/authors")
+                .hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+
+                .antMatchers(HttpMethod.POST, "/api/users/**","/api/authors")
+                .hasAnyRole(Role.ADMIN.name())
+
+                .antMatchers(HttpMethod.PUT, "/api/users/**","/api/authors/**")
+                .hasAnyRole(Role.ADMIN.name())
+
+                .antMatchers(HttpMethod.DELETE, "api//users/**","/api/authors/**")
+                .hasAnyRole(Role.ADMIN.name())
 
                 .anyRequest()
                 .authenticated()
